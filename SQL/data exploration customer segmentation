@@ -52,3 +52,39 @@ FROM
     ) AS segments
 GROUP BY
     segment;
+   
+
+-- Identify customers who have the highest total spending
+SELECT
+    customer_id,
+    SUM(amount) AS total_spending
+FROM
+    transactions
+GROUP BY
+    customer_id
+ORDER BY
+    total_spending DESC
+LIMIT 5;
+
+-- Identify customers who have the highest number of transactions
+SELECT
+    customer_id,
+    COUNT(*) AS transaction_count
+FROM
+    transactions
+GROUP BY
+    customer_id
+ORDER BY
+    transaction_count DESC
+LIMIT 5;
+
+-- Calculate the average order value for each customer
+SELECT
+    customer_id,
+    AVG(order_total) AS average_order_value
+FROM
+    orders
+GROUP BY
+    customer_id;
+
+
